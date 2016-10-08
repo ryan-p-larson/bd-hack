@@ -63,6 +63,8 @@ traffic.data$arrstatus <- NA
 all.data <- rbind(arrest.data, traffic.data)
 all.data$arryear <- format(all.data$arrdate, "%Y")
 
+all.data$arrweekday <- weekdays(all.data$arrdate)
+
 all.data$key <- seq(1, nrow(all.data))
 all.data$arrtime <- (((as.numeric(all.data$arrtime))-(as.numeric(all.data$arryear)*1000000))/60) %% 24
 no.missing.vals.data <- all.data[complete.cases(all.data),]
