@@ -1,0 +1,13 @@
+dob - date of birth
+pstreet - street address of person
+pcity - city of person
+arrtime - arrest time
+arrdate - arrest date
+arrweekday - day of week of arrest
+arrstreet - arrest street
+arrstatus - arrest status
+charge - charge person received
+age - age when charged
+driving - moving traffic violation bool
+arryear - year of arrest
+key - unique identifier
