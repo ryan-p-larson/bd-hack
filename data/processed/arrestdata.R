@@ -64,10 +64,23 @@ all.data <- rbind(arrest.data, traffic.data)
 all.data$arryear <- format(all.data$arrdate, "%Y")
 
 all.data$arrweekday <- weekdays(all.data$arrdate)
+all.data$weekendBool <- ifelse(all.data$arrweekday == "Friday", 1, 
+                               ifelse(all.data$arrweekday == "Saturday", 1, 
+                                      ifelse(all.data$arrweekday == "Sunday", 1, 0)))
+all.data$footballWeekendBool <- 0
 
 all.data$key <- seq(1, nrow(all.data))
 all.data$arrtime <- (((as.numeric(all.data$arrtime))-(as.numeric(all.data$arryear)*1000000))/60) %% 24
 no.missing.vals.data <- all.data[complete.cases(all.data),]
 
+
 write.csv(all.data, "alldata.csv")
 write.csv(no.missing.vals.data, "nomissingvalues.csv")
+
+football.data <- read.table("iowa-home-games.txt",header=TRUE,sep=",")
+football.data$Date <- as.Date(football.data$Date, "%Y-%m-%d")
+
+write.csv(football.data, "footballdata.csv")
+
+#test <- sapply(all.data$arrdate, function(x) sapply(football.data$Date, 
+            #function(y) ifelse(abs(difftime(x,y)) <= 1, 1, 0)))
