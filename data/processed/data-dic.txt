@@ -9,3 +9,4 @@ charge - charge person received
 age - age when charged
 driving - moving traffic violation bool
 arryear - year of arrest
+key - unique identifier
